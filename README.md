@@ -1,60 +1,67 @@
+# Waste Classification with Machine Learning
 
-# Bank Customer Churn Prediction
+This project applies supervised machine learning models to classify waste into two categories: Organic (O) and Recyclable (R). The classification is based on image data, and models like Logistic Regression and K-Nearest Neighbors (KNN) are used along with dimensionality reduction via PCA (Principal Component Analysis).
 
-This project focuses on predicting bank customer churn using a dataset containing various customer attributes. The goal is to build a machine learning model that can identify which customers are likely to leave the bank, allowing the bank to take proactive actions to retain them.
+## Dataset
 
-## Project Overview
+- The dataset consists of images categorized into two classes:
+  - **O** (Organic)
+  - **R** (Recyclable)
+  
+- The images are stored in two directories:
+  - **TRAIN**: Used for training the models.
+  - **TEST**: Used for testing the models.
+  
+Each of these directories contains subdirectories "O" and "R", representing the two classes.
 
-The project analyzes customer data to understand patterns that lead to churn, such as customer demographics, account balances, transaction behavior, and more. Using this data, a predictive model is built to forecast customer churn.
+The dataset was sourced from Kaggle.
 
-### Dataset
+## Exploratory Data Analysis (EDA)
 
-The dataset used for this project includes the following features:
+During EDA, we:
+- Counted the number of images in each category (O and R) for both training and testing sets.
+- Visualized some of the sample images to understand the dataset better.
+- Applied **PCA** to reduce the dimensionality of the image data for easier processing and visualization.
 
-- `customer_id`: Unique identifier for the customer.
-- `vintage`: Number of days the customer has been with the bank.
-- `age`: Age of the customer.
-- `gender`: Gender of the customer.
-- `dependents`: Number of dependents the customer has.
-- `occupation`: Occupation type (e.g., salaried, self-employed).
-- `city`: Customer’s city code.
-- `customer_nw_category`: Customer's net worth category.
-- `branch_code`: Code of the branch associated with the customer.
-- `current_balance`: The customer's current account balance.
-- Several transaction-related features including:
-  - `current_month_credit`
-  - `previous_month_credit`
-  - `current_month_debit`
-  - `previous_month_debit`
-  - `current_month_balance`
-  - `previous_month_balance`
-- `churn`: The target variable indicating if the customer churned (1) or not (0).
-- `last_transaction`: Date of the customer's last transaction.
+## Supervised Machine Learning Models
 
-### Analysis
+We used the following supervised machine learning models:
 
-The analysis includes the following steps:
+### 1. Logistic Regression:
+- We applied **Logistic Regression** to the dataset after applying PCA for dimensionality reduction.
+- We evaluated the model performance using classification metrics like accuracy, precision, recall, and F1-score.
 
-1. **Data Preprocessing**: Cleaning missing data, handling outliers, and feature engineering.
-2. **Exploratory Data Analysis**: Identifying patterns in customer behavior related to churn.
-3. **Model Building**: Training machine learning models like Logistic Regression, Decision Trees, and Random Forest to predict churn.
-4. **Model Evaluation**: Using accuracy, precision, recall, and other metrics to evaluate model performance.
+### 2. K-Nearest Neighbors (KNN):
+- We also tested the **KNN** algorithm with the PCA-transformed data.
+- The model was evaluated using the same metrics.
 
-## Getting Started
+### 3. Dimensionality Reduction with PCA:
+- We reduced the number of features by applying **PCA** to the image data. This allowed us to optimize the model performance and reduce computational complexity.
+
+## Results and Evaluation
+
+- **Logistic Regression** performed reasonably well in classifying the images after PCA was applied.
+- **KNN** was also tested, and we compared the performance of both models.
+- **PCA** helped in reducing the dimensionality of the image data, which improved model performance by eliminating redundant information.
+
+## Visualization
+
+- We visualized the performance of the models using:
+  - **Scatter plots** to compare true and predicted values.
+  - **Confusion matrices** to show the correct and incorrect classifications.
+  - **ROC curves** to evaluate model performance in terms of true positive rate vs false positive rate.
+
+## How to Run the Project
 
 ### Prerequisites
 
-- Python 3.x
-- Jupyter Notebook
-- Required libraries: `pandas`, `numpy`, `matplotlib`, `scikit-learn`
+- Install the following Python libraries:
+  - `numpy`
+  - `pandas`
+  - `matplotlib`
+  - `scikit-learn`
+  - `umap-learn` (optional, for UMAP dimensionality reduction)
 
-### Running the Project
-
-1. Clone the repository.
-2. Install the required dependencies.
-3. Open the `bankanalysis.ipynb` file in Jupyter Notebook.
-4. Run all the cells to see the analysis and model predictions.
-
-## Results
-
-The models help identify customers with a high risk of churn, providing insights into factors like low account balance, high transaction frequency, or long periods of inactivity, which can influence customer churn.
+To install these, run:
+```bash
+pip install numpy pandas matplotlib scikit-learn umap-learn
